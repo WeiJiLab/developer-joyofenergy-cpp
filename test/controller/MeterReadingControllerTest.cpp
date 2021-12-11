@@ -65,7 +65,7 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreGivenMultipleBatchesOfMeterRe
             "electricityReadings": [
                     {
                             "time": "2021-08-18T06:42:15.725202Z",
-                            "reading": 1
+                            "reading": 0.001
                     }
             ]
     })"_json;
@@ -74,7 +74,7 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreGivenMultipleBatchesOfMeterRe
             "electricityReadings": [
                     {
                             "time": "2021-08-18T06:44:15.725202Z",
-                            "reading": 2
+                            "reading": 0.002
                     }
             ]
     })"_json;
@@ -86,8 +86,8 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreGivenMultipleBatchesOfMeterRe
   controller_.Store(req2, queries);
 
   std::vector<ElectricityReading> expectedElectricityReadings = {
-      {detail::fromRfc3339("2021-08-18T06:42:15.725202Z"), 1},
-      {detail::fromRfc3339("2021-08-18T06:44:15.725202Z"), 2}
+      {detail::fromRfc3339("2021-08-18T06:42:15.725202Z"), 10},
+      {detail::fromRfc3339("2021-08-18T06:44:15.725202Z"), 20}
   };
 
   EXPECT_THAT(meterReadingService_.getReadings("smart-meter-0"), Eq(expectedElectricityReadings));
@@ -99,7 +99,7 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreAssociatedWithUserGivenMeterR
             "electricityReadings": [
                     {
                             "time": "2021-08-18T06:42:15.725202Z",
-                            "reading": 1
+                            "reading": 0.001
                     }
             ]
     })"_json;
@@ -108,7 +108,7 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreAssociatedWithUserGivenMeterR
             "electricityReadings": [
                     {
                             "time": "2021-08-18T06:44:15.725202Z",
-                            "reading": 2
+                            "reading": 0.002
                     }
             ]
     })"_json;
@@ -120,7 +120,7 @@ TEST_F(MeterReadingControllerTest, StoreShouldStoreAssociatedWithUserGivenMeterR
   controller_.Store(req2, queries);
 
   std::vector<ElectricityReading> expectedElectricityReadings = {
-      {detail::fromRfc3339("2021-08-18T06:42:15.725202Z"), 1},
+      {detail::fromRfc3339("2021-08-18T06:42:15.725202Z"), 10},
   };
 
   EXPECT_THAT(meterReadingService_.getReadings("smart-meter-0"), Eq(expectedElectricityReadings));
