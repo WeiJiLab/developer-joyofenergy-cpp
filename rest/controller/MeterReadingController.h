@@ -65,7 +65,11 @@ class MeterReadingController {
       return {http::status::internal_server_error, 11};
     }
     for (auto &electricityReading : body["electricityReadings"]) {
-      electricityReadings.emplace_back(detail::fromRfc3339(electricityReading["time"]), electricityReading["reading"]);
+      auto time = detail::fromRfc3339(electricityReading["time"]);
+      auto reading = static_cast<std::size_t>(
+        electricityReading["reading"].get<double>() * 10000
+      );
+      electricityReadings.emplace_back(time, reading);
     }
     meterReadingService_.storeReadings(smartMeterId, electricityReadings);
     return {};
