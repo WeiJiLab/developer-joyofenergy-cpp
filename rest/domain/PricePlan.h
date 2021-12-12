@@ -1,10 +1,11 @@
 #ifndef DEVELOPER_JOYOFENERGY_CPP_BEAST_PRICEPLAN_H
 #define DEVELOPER_JOYOFENERGY_CPP_BEAST_PRICEPLAN_H
 
+#include <algorithm>
+#include <chrono>
 #include <string>
 #include <utility>
 #include <vector>
-#include <chrono>
 
 class PricePlan {
   // todo:
