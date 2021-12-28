@@ -60,7 +60,7 @@ These values are used in the code and in the following examples too.
 The project requires Cmake 3.21 or
 higher.
 
-The project makes use of Conan.
+The project makes use of Conan.(Conan's installation documentation can be found here : [https://docs.conan.io/en/latest/installation.html](https://docs.conan.io/en/latest/installation.html)). **Tips: you need Python >= 3.5 distribution installed on your machine**
 
 ## Useful Conan commands
 
