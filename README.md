@@ -76,7 +76,12 @@ $ mkdir build && cd build
 $ cmake .. -DCMAKE_BUILD_TYPE=Release
 $ cmake --build . --config Release
 ```
-
+or if you want to debug the build
+```console
+$ mkdir build && cd build
+$ cmake .. -DCMAKE_BUILD_TYPE=Debug
+$ cmake --build . --config Debug
+```
 
 ### Run the tests
 
