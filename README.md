@@ -83,6 +83,11 @@ $ cmake .. -DCMAKE_BUILD_TYPE=Debug
 $ cmake --build . --config Debug
 ```
 
+If you have trouble preparing your local development environment, build the project using [docker](https://www.docker.com)
+1. build the docker image using command `docker build ./docker -f ./docker/Dockerfile -t joi:latest` in the project root directory
+2. bring up the docker image and get inside the docker container using `docker run -it -v$(pwd):/joi -w /joi joi:latest bash` in the project root directory
+3. run above cmake commands in the docker container
+
 ### Run the tests
 
 There are two types of tests, the unit tests and the functional tests. These can be executed as follows.
