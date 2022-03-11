@@ -12,7 +12,7 @@ graph_info.json
 CMakeCache.txt
 CMakeFiles
 Testing
-*.cmake
+build/*.cmake
 Makefile
 cmake-build-*
 
