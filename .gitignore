@@ -3,22 +3,38 @@
 **/*.so
 **/*.dylib
 
+# Legacy Conan files (no longer used with CPM)
 conan.lock
 conan_paths.cmake
 conanbuildinfo.txt
 conaninfo.txt
 graph_info.json
 
+# CMake build artifacts
 CMakeCache.txt
 CMakeFiles
 Testing
-build/*.cmake
-Makefile
+build/
+build-*/
 cmake-build-*
+Makefile
+*.cmake
+!cmake/CPM.cmake
+!cmake_module/conan.cmake
 
-.idea
+# CPM cache (optional - can be shared across projects)
+_deps/
+
+# IDE and editor files
+.idea/
+.vscode/
+.vs/
+.devcontainer/
 compile_commands.json
 DartConfiguration.tcl
 **/*.cbp
-
 tags
+
+# macOS
+.DS_Store
+._*

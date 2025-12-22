@@ -57,19 +57,13 @@ These values are used in the code and in the following examples too.
 
 ## Requirements
 
-The project requires Cmake 3.21 or
-higher.
+The project requires CMake 3.19 or higher.
 
-The project makes use of Conan.(Conan's installation documentation can be found here : [https://docs.conan.io/en/latest/installation.html](https://docs.conan.io/en/latest/installation.html)). **Tips: you need Python >= 3.5 distribution installed on your machine**
+The project uses CPM (CMake Package Manager) to automatically download and manage dependencies. No additional package manager installation is required.
 
-## Useful Conan commands
+## Build the project
 
-The project makes use of [Conan](https://conan.io/) to help you out carrying some common tasks such as building
-the project or running it.
-
-### Build the project
-
-Compiles the project, runs the test and then creates an executable file.
+Compiles the project, runs the tests and then creates an executable file.
 
 ```console
 $ mkdir build && cd build
