@@ -24,6 +24,7 @@ Makefile
 
 # CPM cache (optional - can be shared across projects)
 _deps/
+.cpm-cache/
 
 # IDE and editor files
 .idea/
@@ -31,8 +32,8 @@ _deps/
 .vs/
 .devcontainer/
 compile_commands.json
-DartConfiguration.tcl
-**/*.cbp
+.clangd/
+.cache/
 tags
 
 # macOS

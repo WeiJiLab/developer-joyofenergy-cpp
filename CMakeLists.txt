@@ -3,6 +3,12 @@ project(developer_joyofenergy_cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Set CPM cache directory to avoid re-downloading dependencies
+# Can be overridden by environment variable CPM_SOURCE_CACHE
+if(NOT CPM_SOURCE_CACHE)
+    set(CPM_SOURCE_CACHE "${CMAKE_SOURCE_DIR}/.cpm-cache" CACHE PATH "CPM cache directory")
+endif()
+
 # Include CPM package manager
 include(cmake/CPM.cmake)
 
