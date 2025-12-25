@@ -16,18 +16,18 @@
 namespace http = boost::beast::http;
 
 namespace detail {
-auto toRfc3339(std::chrono::time_point<std::chrono::system_clock> time) {
+inline auto toRfc3339(std::chrono::time_point<std::chrono::system_clock> time) {
   return date::format("%FT%TZ", time);
 }
 
-auto fromRfc3339(const std::string &time) {
+inline auto fromRfc3339(const std::string &time) {
   std::chrono::time_point<std::chrono::system_clock> tp;
   std::istringstream ss(time);
   ss >> date::parse("%FT%TZ", tp);
   return tp;
 }
 
-auto renderReadingAsJson(const ElectricityReading &r) {
+inline auto renderReadingAsJson(const ElectricityReading &r) {
   return nlohmann::json{{"time", toRfc3339(r.getTime())}, {"reading", double(r.getReading()) / 10000}};
 }
 }  // namespace detail
