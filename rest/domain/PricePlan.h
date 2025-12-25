@@ -25,6 +25,12 @@ class PricePlan {
 
     PeakTimeMultiplier(DayOfWeek dayOfWeek, int multiplier) : dayOfWeek(dayOfWeek), multiplier(multiplier) {}
 
+    PeakTimeMultiplier(const PeakTimeMultiplier&) = default;
+    PeakTimeMultiplier& operator=(const PeakTimeMultiplier&) = default;
+    PeakTimeMultiplier(PeakTimeMultiplier&&) noexcept = default;
+    PeakTimeMultiplier& operator=(PeakTimeMultiplier&&) noexcept = default;
+    ~PeakTimeMultiplier() = default;
+
     DayOfWeek dayOfWeek;
     int multiplier;
   };
@@ -34,6 +40,18 @@ class PricePlan {
         energySupplier_(std::move(energySupplier)),
         unitRate_(unitRate),
         peakTimeMultipliers_(std::move(peakTimeMultipliers)) {}
+
+  // Copyable
+  PricePlan(const PricePlan&) = default;
+
+  // Non-assignable due to const members (immutable value object)
+  PricePlan& operator=(const PricePlan&) = delete;
+  PricePlan& operator=(PricePlan&&) = delete;
+
+  // Movable (for vector initialization)
+  PricePlan(PricePlan&&) noexcept = default;
+
+  ~PricePlan() = default;
 
   std::string getEnergySupplier() const { return energySupplier_; }
 

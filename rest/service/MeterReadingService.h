@@ -18,6 +18,17 @@
 
 class MeterReadingService {
  public:
+  explicit MeterReadingService(std::unordered_map<std::string, std::vector<ElectricityReading>> &meterAssociatedReadings)
+      : meterAssociatedReadings_(meterAssociatedReadings) {}
+
+  MeterReadingService(const MeterReadingService&) = delete;
+  MeterReadingService& operator=(const MeterReadingService&) = delete;
+
+  MeterReadingService(MeterReadingService&&) = delete;
+  MeterReadingService& operator=(MeterReadingService&&) = delete;
+
+  ~MeterReadingService() = default;
+
   std::optional<std::vector<ElectricityReading>> getReadings(const std::string &smartMeterId) const {
     std::shared_lock<std::shared_mutex> lock(mtx_);
     if (meterAssociatedReadings_.find(smartMeterId) == meterAssociatedReadings_.end()) {
@@ -34,9 +45,6 @@ class MeterReadingService {
     meterAssociatedReadings_[smartMeterId].insert(meterAssociatedReadings_[smartMeterId].end(), electricityReadings.begin(),
                                                   electricityReadings.end());
   }
-
-  explicit MeterReadingService(std::unordered_map<std::string, std::vector<ElectricityReading>> &meterAssociatedReadings)
-      : meterAssociatedReadings_(meterAssociatedReadings) {}
 
  private:
   mutable std::shared_mutex mtx_;

@@ -34,6 +34,13 @@ class PricePlanService {
   PricePlanService(std::vector<PricePlan> &pricePlans, MeterReadingService &meterReadingService)
       : pricePlans_(pricePlans), meterReadingService_(meterReadingService) {}
 
+  PricePlanService(const PricePlanService&) = delete;
+  PricePlanService& operator=(const PricePlanService&) = delete;
+  PricePlanService(PricePlanService&&) = delete;
+  PricePlanService& operator=(PricePlanService&&) = delete;
+
+  ~PricePlanService() = default;
+
  private:
   const std::vector<PricePlan> &pricePlans_;
   MeterReadingService &meterReadingService_;

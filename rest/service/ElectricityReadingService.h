@@ -13,6 +13,13 @@ class ElectricityReadingService {
   ElectricityReadingService(std::unordered_map<std::string, std::vector<ElectricityReading>> &meterAssociatedReadings)
       : meterAssociatedReadings_(meterAssociatedReadings) {}
 
+  ElectricityReadingService(const ElectricityReadingService&) = delete;
+  ElectricityReadingService& operator=(const ElectricityReadingService&) = delete;
+  ElectricityReadingService(ElectricityReadingService&&) = delete;
+  ElectricityReadingService& operator=(ElectricityReadingService&&) = delete;
+
+  ~ElectricityReadingService() = default;
+
   std::optional<std::vector<ElectricityReading>> GetReading(const std::string &meterId) const {
     auto found = meterAssociatedReadings_.find(meterId);
     if (found != meterAssociatedReadings_.end()) {

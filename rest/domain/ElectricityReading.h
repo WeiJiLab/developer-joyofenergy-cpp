@@ -9,6 +9,8 @@ class ElectricityReading {
   using time_point_type = std::chrono::time_point<std::chrono::system_clock>;
 
   ElectricityReading(time_point_type time, size_t reading) : time_(time), reading_(reading) {}
+  ElectricityReading(const ElectricityReading&) = default;
+  ElectricityReading& operator=(const ElectricityReading&) = default;
 
   time_point_type getTime() const { return time_; }
 

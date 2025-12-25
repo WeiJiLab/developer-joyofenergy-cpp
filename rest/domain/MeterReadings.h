@@ -8,10 +8,17 @@
 
 class MeterReadings {
  public:
-  MeterReadings() {}
 
   MeterReadings(std::string smartMeterId, std::list<ElectricityReading> electricityReadings)
-      : smartMeterId_(smartMeterId), electricityReadings_(electricityReadings){};
+      : smartMeterId_(std::move(smartMeterId)), electricityReadings_(std::move(electricityReadings)) {}
+
+  MeterReadings(const MeterReadings&) = default;
+  MeterReadings& operator=(const MeterReadings&) = default;
+
+  MeterReadings(MeterReadings&&) noexcept = default;
+  MeterReadings& operator=(MeterReadings&&) noexcept = default;
+
+  ~MeterReadings() = default;
 
   std::list<ElectricityReading> getElectricityReadings() const { return electricityReadings_; }
 
