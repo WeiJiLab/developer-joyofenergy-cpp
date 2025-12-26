@@ -4,7 +4,7 @@ add_library(rest)
 target_sources(rest PRIVATE server.cpp)
 target_include_directories(rest INTERFACE ..)
 
-target_compile_definitions(rest PRIVATE BOOST_ALL_NO_LIB)
+target_compile_definitions(rest PRIVATE BOOST_ALL_NO_LIB BOOST_ASIO_NO_DEPRECATED)
 
 if(WIN32)
   target_compile_definitions(rest PRIVATE _WIN32_WINNT=0x0601)

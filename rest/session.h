@@ -7,8 +7,11 @@
 #include <boost/asio/dispatch.hpp>
 #include <boost/beast/core/flat_buffer.hpp>
 #include <boost/beast/core/tcp_stream.hpp>
+#include <boost/beast/http.hpp>
 
 #include "logger.h"
+
+namespace http = boost::beast::http;
 
 class session : public std::enable_shared_from_this<session> {
   using error_code = boost::beast::error_code;
@@ -32,7 +35,8 @@ class session : public std::enable_shared_from_this<session> {
     // otherwise the operation behavior is undefined.
     req_ = {};
     stream_.expires_after(std::chrono::seconds(30));
-    http::async_read(stream_, buffer_, req_, boost::beast::bind_front_handler(&session::on_read, shared_from_this()));
+    http::async_read(stream_, buffer_, req_,
+                     boost::beast::bind_front_handler(&session::on_read, shared_from_this()));
   }
 
   void on_read(error_code ec, std::size_t bytes_transferred) {
@@ -68,13 +72,18 @@ class session : public std::enable_shared_from_this<session> {
   void do_close() {
     error_code ec;
     stream_.socket().shutdown(tcp::socket::shutdown_send, ec);
+
+    if (ec && ec != boost::asio::error::not_connected) {
+      fail(ec, "shutdown");
+    }
   }
 
   template <class Body, class Fields>
   void send(http::response<Body, Fields> &&msg) {
     auto sp = std::make_shared<typename std::remove_reference<decltype(msg)>::type>(std::move(msg));
     res_ = sp;
-    http::async_write(stream_, *sp, boost::beast::bind_front_handler(&session::on_write, shared_from_this(), sp->need_eof()));
+    http::async_write(stream_, *sp,
+                      boost::beast::bind_front_handler(&session::on_write, shared_from_this(), sp->need_eof()));
   }
 
   boost::beast::tcp_stream stream_;

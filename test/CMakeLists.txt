@@ -1,4 +1,4 @@
-add_definitions(-DBOOST_ALL_NO_LIB)
+add_definitions(-DBOOST_ALL_NO_LIB -DBOOST_ASIO_NO_DEPRECATED)
 
 if(WIN32)
   add_definitions(-D_WIN32_WINNT=0x0601)
