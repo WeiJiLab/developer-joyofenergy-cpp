@@ -16,7 +16,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage(
     NAME Boost
     VERSION 1.84.0
-    URL https://github.com/boostorg/boost/releases/download/boost-1.84.0/boost-1.84.0.tar.xz
+    URL https://ghfast.top/https://github.com/boostorg/boost/releases/download/boost-1.84.0/boost-1.84.0.tar.xz
     URL_HASH SHA256=2e64e5d79a738d0fa6fb546c6e5c2bd28f88d268a2a080546f74e5ff98f29d0e
     OPTIONS
         "BOOST_ENABLE_CMAKE ON"
@@ -25,8 +25,8 @@ CPMAddPackage(
 
 CPMAddPackage(
     NAME googletest
-    GITHUB_REPOSITORY google/googletest
-    GIT_TAG v1.15.2
+    URL https://ghfast.top/https://github.com/google/googletest/releases/download/v1.15.2/googletest-1.15.2.tar.gz
+    URL_HASH SHA256=7b42b4d6ed48810c5362c265a17faebe90dc2373c885e5216439d37927f02926
     VERSION 1.15.2
     OPTIONS
         "INSTALL_GTEST OFF"
@@ -35,14 +35,17 @@ CPMAddPackage(
 
 CPMAddPackage(
     NAME nlohmann_json
-    GITHUB_REPOSITORY nlohmann/json
+    URL https://ghfast.top/https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip
+    URL_HASH SHA256=04022b05d806eb5ff73023c280b68697d12b93e1b7267a0b22a1a39ec7578069
+
     VERSION 3.11.3
 )
 
 CPMAddPackage(
     NAME date
-    GITHUB_REPOSITORY HowardHinnant/date
-    GIT_TAG v3.0.4
+    URL https://ghfast.top/https://github.com/HowardHinnant/date/archive/refs/tags/v3.0.4.tar.gz
+    URL_HASH SHA256=56e05531ee8994124eeb498d0e6a5e1c3b9d4fccbecdf555fe266631368fb55f
+    VERSION 3.0.4
     OPTIONS
         "USE_SYSTEM_TZ_DB ON"
         "BUILD_TZ_LIB OFF"
